@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical Mobile - Fixture Details</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: #667eea;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        .ios-btn {
+            background: #000;
+        }
+        .android-btn {
+            background: #01875f;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">⚽</div>
+        <h1>Tactical Mobile</h1>
+        <p>Download our app to view match details, predictions, and more!</p>
+        
+        <div class="download-buttons">
+            <a href="https://apps.apple.com/us/app/tactical/id6739902280" class="download-btn ios-btn">
+                App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.awoon.tactical" class="download-btn android-btn">
+                Google Play
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Auto-detect platform and redirect
+        function detectPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // iOS
+                window.location.href = 'https://apps.apple.com/us/app/tactical/id6739902280';
+            } else if (/android/i.test(userAgent)) {
+                // Android
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.awoon.tactical';
+            }
+        }
+
+        // Auto-redirect after 3 seconds
+        setTimeout(detectPlatform, 3000);
+    </script>
+</body>
+</html>  </div>
+    
+    <script>
+        // Get match ID from URL if available
+        function getMatchId() {
+            const path = window.location.pathname;
+            const match = path.match(/\/fixture\/(\d+)/);
+            return match ? match[1] : '123';
+        }
+        
+        // Update page content based on URL
+        function updateContent() {
+            const matchId = getMatchId();
+            const openAppLink = document.querySelector('.open-app-btn');
+            if (openAppLink) {
+                openAppLink.href = `tactical-app://fixture/${matchId}`;
+            }
+            
+            // Update meta tags
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) {
+                ogUrl.setAttribute('content', `https://tactical-app.com/fixture/${matchId}`);
+            }
+        }
+        
+        // Auto-redirect to app if available (with delay)
+        function tryOpenApp() {
+            const matchId = getMatchId();
+            const appUrl = `tactical-app://fixture/${matchId}`;
+            
+            // Try to open the app
+            window.location.href = appUrl;
+            
+            // Fallback: redirect to app store after 2 seconds if app doesn't open
+            setTimeout(function() {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                
+                if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // iOS
+                    window.location.href = 'https://apps.apple.com/us/app/tactical/id6739902280';
+                } else if (/android/i.test(userAgent)) {
+                    // Android
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.awoon.tactical';
+                }
+            }, 2000);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContent();
+            
+            // Auto-try to open app after 1 second
+            setTimeout(tryOpenApp, 1000);
+        });
+        
+        // Track page views for analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': 'Fixture Details',
+                'page_location': window.location.href
+            });
+        }
+    </script>
+</body>
+</html>

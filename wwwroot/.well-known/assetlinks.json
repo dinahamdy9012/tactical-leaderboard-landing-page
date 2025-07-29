@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.awoon.tactical",
+      "sha256_cert_fingerprints": [
+        "FC:F2:11:8C:B1:F0:AA:40:50:28:63:E8:94:DC:1F:68:B1:D0:7C:D2:BD:88:00:AA:CC:30:0E:4A:6B:9E:CD:E5"
+      ]
+    }
+  }
+]
