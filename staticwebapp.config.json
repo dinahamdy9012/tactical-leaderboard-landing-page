@@ -1,12 +1,10 @@
 {
-  "responseOverrides": {
-    "/.well-known/apple-app-site-association": {
-      "statusCode": 200,
-      "headers": {
-        "Content-Type": "application/json"
-      }
+  "routes": [
+    {
+      "route": "/.well-known/apple-app-site-association",
+      "rewrite": "/.well-known/apple-app-site-association.json"
     }
-  },
+  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [ "/.well-known/*" ]
