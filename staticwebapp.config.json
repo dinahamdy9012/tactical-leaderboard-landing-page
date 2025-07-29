@@ -5,9 +5,6 @@
       "mimeType": "application/json"
     }
   ],
-  "mimeTypes": {
-    ".apple-app-site-association": "application/json"
-  },
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": ["/.well-known/*"]
