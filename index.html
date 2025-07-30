@@ -129,31 +129,31 @@
 
     <!-- Smart Redirect Script -->
     <script>
-        function getMatchId() {
+        function getUrl() {
             const path = window.location.pathname;
             const leaderboard = path.match(/\/leaderboard\/(\d+)/);
             const match = path.match(/\/fixture\/(\d+)/);
             if (leaderboard) {
-                return leaderboard;
+                return leaderboard[0];
             }
             else if (match) {
-                return match[1];
+                return match[0];
             }
             else
                 return '';
         }
 
         function updateContent() {
-            const matchId = getMatchId();
+            // const url = getUrl();
             const ogUrl = document.querySelector('meta[property="og:url"]');
             if (ogUrl) {
-                ogUrl.setAttribute('content', `https://tactical.tactical-app.com/fixture/${matchId}`);
+                ogUrl.setAttribute('content', `https://tactical.tactical-app.com${window.location.pathname + window.location.search}`);
             }
         }
 
         function tryOpenApp() {
-            const matchId = getMatchId();
-            const appUrl = `tacticalapp://fixture/${matchId}`;
+            //const url = getUrl();
+            const appUrl = `tacticalapp:/${window.location.pathname + window.location.search}`;
             window.location.href = appUrl;
 
             setTimeout(() => {
@@ -173,7 +173,7 @@
 
         if (typeof gtag !== 'undefined') {
             gtag('event', 'page_view', {
-                'page_title': 'Fixture Details',
+                'page_title': 'Tactical تكتيكي',
                 'page_location': window.location.href
             });
         }
