@@ -6,9 +6,8 @@
     <title>Tactical تكتيكي</title>
 
     <!-- Social Sharing -->
-    <meta property="og:title" content="Tactical Mobile" />
-    <meta property="og:description" content="Join fixture leaderboard!" />
-    <meta property="og:url" content="https://leaderboard.tactical-app.com" />
+    <meta property="og:title" content="Tactical تكتيكي" />
+    <meta property="og:url" content="https://tactical.tactical-app.com" />
     <meta property="og:type" content="website" />
 
     <!-- Styles -->
@@ -119,7 +118,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://leaderboard.tactical-app.com/images/tactical-logo.png" alt="Tactical Logo" class="logo-img" />
+        <img src="https://tactical.tactical-app.com/images/tactical-logo.png" alt="Tactical Logo" class="logo-img" />
         <h1>Tactical تكتيكي</h1>
         <p>Download our app to view match details, predictions, and join the leaderboard!</p>
         <div class="download-buttons">
@@ -132,15 +131,23 @@
     <script>
         function getMatchId() {
             const path = window.location.pathname;
+            const leaderboard = path.match(/\/leaderboard\/(\d+)/);
             const match = path.match(/\/fixture\/(\d+)/);
-            return match ? match[1] : '123';
+            if (leaderboard) {
+                return leaderboard;
+            }
+            else if (match) {
+                return match[1];
+            }
+            else
+                return '';
         }
 
         function updateContent() {
             const matchId = getMatchId();
             const ogUrl = document.querySelector('meta[property="og:url"]');
             if (ogUrl) {
-                ogUrl.setAttribute('content', `https://leaderboard.tactical-app.com/fixture/${matchId}`);
+                ogUrl.setAttribute('content', `https://tactical.tactical-app.com/fixture/${matchId}`);
             }
         }
 
