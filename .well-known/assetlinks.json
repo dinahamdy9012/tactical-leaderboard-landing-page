@@ -1,11 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.awoon.tactical",
       "sha256_cert_fingerprints": [
-        "FC:F2:11:8C:B1:F0:AA:40:50:28:63:E8:94:DC:1F:68:B1:D0:7C:D2:BD:88:00:AA:CC:30:0E:4A:6B:9E:CD:E5"
+        "FC:F2:11:8C:B1:F0:AA:40:50:28:63:E8:94:DC:1F:68:B1:D0:7C:D2:BD:88:00:AA:CC:30:0E:4A:6B:9E:CD:E5",
+        "99:0A:7D:5B:86:06:14:F4:6A:F0:36:47:31:CD:D7:0E:43:40:84:70:FC:0B:C0:2E:69:50:1C:8A:57:0D:E1:0A"
       ]
     }
   }
